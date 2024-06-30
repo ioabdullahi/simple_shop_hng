@@ -9,14 +9,14 @@ A simple shopping app that displays a list of products and a checkout screen. Us
 - Order successful screen
 
 ## Screenshots
-![Products Screen](screenshots/products_screen.png)
-![Checkout Screen](screenshots/checkout_screen.png)
-![Order Successful Screen](screenshots/order_successful_screen.png)
+![Products Screen](assets/111.png)
+![Checkout Screen](assets/222.png)
+![Order Successful Screen](assets/333.png)
 
 ## Setup Instructions
 1. Clone the repository:
     ```bash
-    git clone https://github.com/ioabdullahi/simple-shop_hng.git
+    git clone https://github.com/ioabdullahi/simple_shop_hng.git
     ```
 2. Navigate to the project directory:
     ```bash
@@ -31,11 +31,8 @@ A simple shopping app that displays a list of products and a checkout screen. Us
     flutter run
     ```
 
-## APK Download
-[Download APK](https://example.com/path/to/apk)
-
 ## Appetize.io Demo
-[View Demo](https://appetize.io/app/your-demo-link)
+[View Demo](https://appetize.io/app/vcxevczbrh62mafzczveqlktbe?device=pixel7&osVersion=13.0)
 
 ## License
-This project is licensed under the MIT License.
+This project is licensed under the HNG11 License.

@@ -6,7 +6,8 @@ class CheckoutScreen extends StatefulWidget {
   final CheckoutController checkoutController;
   final VoidCallback onProductScreenTap;
 
-  CheckoutScreen({required this.checkoutController, required this.onProductScreenTap});
+  CheckoutScreen(
+      {required this.checkoutController, required this.onProductScreenTap});
 
   @override
   _CheckoutScreenState createState() => _CheckoutScreenState();
@@ -82,7 +83,8 @@ class _CheckoutScreenState extends State<CheckoutScreen> {
           if (widget.checkoutController.checkoutItems.isEmpty) {
             ScaffoldMessenger.of(context).showSnackBar(
               SnackBar(
-                content: Text('Cart is empty. Add products before checking out.'),
+                content:
+                    Text('Cart is empty. Add products before checking out.'),
                 backgroundColor: Colors.redAccent,
               ),
             );
