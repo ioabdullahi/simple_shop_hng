@@ -2,7 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:simple_shop_hng/controllers/checkout_controller.dart';
 import 'package:simple_shop_hng/controllers/products_controller.dart';
 import 'package:simple_shop_hng/views/checkout_screen.dart';
-import 'package:simple_shop_hng/views/widgets/product_item.dart';
+
 
 class ProductListScreen extends StatefulWidget {
   @override
@@ -39,7 +39,7 @@ class _ProductListScreenState extends State<ProductListScreen> {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: Text('Products'),
+        title: Text('Products', style: TextStyle(color: Colors.white),),
         backgroundColor: Colors.teal,
       ),
       body: ListView.builder(
@@ -49,7 +49,7 @@ class _ProductListScreenState extends State<ProductListScreen> {
           return ListTile(
             leading: Icon(Icons.shopping_bag, color: Colors.teal),
             title: Text(product.name),
-            subtitle: Text('\$${product.price.toStringAsFixed(2)}'),
+            subtitle: Text('\₦${product.price.toStringAsFixed(2)}'),
             trailing: IconButton(
               icon: Icon(Icons.add_shopping_cart),
               onPressed: () {

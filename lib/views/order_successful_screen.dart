@@ -5,7 +5,7 @@ class OrderSuccessfulScreen extends StatelessWidget {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: Text('Order Successful'),
+        title: Text('Order Successful', style: TextStyle(color: Colors.white)),
         backgroundColor: Colors.teal,
       ),
       body: Center(

@@ -12,10 +12,11 @@ class MyApp extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
-      title: 'Simple Shopping App',
+      title: 'Simple Shop',
       theme: ThemeData(
         primarySwatch: Colors.teal,
       ),
+      debugShowCheckedModeBanner: false,
       home: ProductListScreen(),
       routes: {
         '/checkout': (context) => CheckoutScreen(

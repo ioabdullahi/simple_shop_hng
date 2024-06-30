@@ -1,6 +1,5 @@
 import 'package:flutter/material.dart';
 import '../controllers/checkout_controller.dart';
-import 'widgets/checkout_item.dart';
 import 'order_successful_screen.dart';
 
 class CheckoutScreen extends StatefulWidget {
@@ -30,7 +29,7 @@ class _CheckoutScreenState extends State<CheckoutScreen> {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: Text('Checkout'),
+        title: Text('Checkout', style: TextStyle(color: Colors.white)),
         backgroundColor: Colors.teal,
       ),
       body: widget.checkoutController.checkoutItems.isEmpty
@@ -44,7 +43,7 @@ class _CheckoutScreenState extends State<CheckoutScreen> {
                 return ListTile(
                   leading: Icon(Icons.shopping_bag, color: Colors.teal),
                   title: Text(product.name),
-                  subtitle: Text('\$${product.price.toStringAsFixed(2)}'),
+                  subtitle: Text('\₦${product.price.toStringAsFixed(2)}'),
                   trailing: IconButton(
                     icon: Icon(Icons.remove_shopping_cart),
                     onPressed: () {
