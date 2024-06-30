@@ -3,26 +3,56 @@ import '../controllers/checkout_controller.dart';
 import 'widgets/checkout_item.dart';
 import 'order_successful_screen.dart';
 
-class CheckoutScreen extends StatelessWidget {
+class CheckoutScreen extends StatefulWidget {
   final CheckoutController checkoutController;
+  final VoidCallback onProductScreenTap;
 
-  CheckoutScreen({required this.checkoutController});
+  CheckoutScreen({required this.checkoutController, required this.onProductScreenTap});
+
+  @override
+  _CheckoutScreenState createState() => _CheckoutScreenState();
+}
+
+class _CheckoutScreenState extends State<CheckoutScreen> {
+  int _selectedIndex = 1;
+
+  void _onItemTapped(int index) {
+    setState(() {
+      _selectedIndex = index;
+    });
+    if (index == 0) {
+      widget.onProductScreenTap();
+      Navigator.pop(context);
+    }
+  }
 
   @override
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
         title: Text('Checkout'),
+        backgroundColor: Colors.teal,
       ),
       body: ListView.builder(
-        itemCount: checkoutController.checkoutItems.length,
+        itemCount: widget.checkoutController.checkoutItems.length,
         itemBuilder: (context, index) {
-          final product = checkoutController.checkoutItems[index];
-          return CheckoutItem(
-            product: product,
-            onRemove: () {
-              checkoutController.removeItem(product);
-            },
+          final product = widget.checkoutController.checkoutItems[index];
+          return ListTile(
+            leading: Icon(Icons.shopping_bag, color: Colors.teal),
+            title: Text(product.name),
+            subtitle: Text('\$${product.price.toStringAsFixed(2)}'),
+            trailing: IconButton(
+              icon: Icon(Icons.remove_shopping_cart),
+              onPressed: () {
+                setState(() {
+                  widget.checkoutController.removeItem(product);
+                });
+                ScaffoldMessenger.of(context).showSnackBar(
+                  SnackBar(content: Text('${product.name} removed from cart')),
+                );
+              },
+              color: Colors.red,
+            ),
           );
         },
       ),
@@ -37,15 +67,13 @@ class CheckoutScreen extends StatelessWidget {
             label: 'Checkout',
           ),
         ],
-        onTap: (index) {
-          if (index == 0) {
-            Navigator.pop(context);
-          }
-        },
+        currentIndex: _selectedIndex,
+        selectedItemColor: Colors.teal,
+        onTap: _onItemTapped,
       ),
       floatingActionButton: FloatingActionButton(
         onPressed: () {
-          checkoutController.clearItems();
+          widget.checkoutController.clearItems();
           Navigator.push(
             context,
             MaterialPageRoute(builder: (context) => OrderSuccessfulScreen()),
@@ -53,6 +81,7 @@ class CheckoutScreen extends StatelessWidget {
         },
         child: Icon(Icons.check),
         tooltip: 'Complete Order',
+        backgroundColor: Colors.teal,
       ),
     );
   }

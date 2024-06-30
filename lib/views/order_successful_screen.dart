@@ -6,9 +6,25 @@ class OrderSuccessfulScreen extends StatelessWidget {
     return Scaffold(
       appBar: AppBar(
         title: Text('Order Successful'),
+        backgroundColor: Colors.teal,
       ),
       body: Center(
-        child: Text('Your order has been placed successfully!'),
+        child: Column(
+          mainAxisAlignment: MainAxisAlignment.center,
+          children: [
+            Icon(
+              Icons.check_circle,
+              color: Colors.green,
+              size: 100,
+            ),
+            SizedBox(height: 20),
+            Text(
+              'Your order has been placed successfully!',
+              style: TextStyle(fontSize: 18),
+              textAlign: TextAlign.center,
+            ),
+          ],
+        ),
       ),
       bottomNavigationBar: BottomNavigationBar(
         items: [
@@ -30,5 +46,3 @@ class OrderSuccessfulScreen extends StatelessWidget {
     );
   }
 }
-
-// lib/views/widgets/product_item.dart

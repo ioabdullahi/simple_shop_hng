@@ -10,12 +10,22 @@ class CheckoutItem extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return ListTile(
-      title: Text(product.name),
-      subtitle: Text('\$${product.price.toStringAsFixed(2)}'),
-      trailing: IconButton(
-        icon: Icon(Icons.remove_shopping_cart),
-        onPressed: onRemove,
+    return Card(
+      margin: EdgeInsets.all(8.0),
+      child: ListTile(
+        leading: Icon(Icons.shopping_bag, color: Colors.teal),
+        title: Text(product.name),
+        subtitle: Text('\$${product.price.toStringAsFixed(2)}'),
+        trailing: IconButton(
+          icon: Icon(Icons.remove_shopping_cart),
+          onPressed: () {
+            onRemove();
+            ScaffoldMessenger.of(context).showSnackBar(
+              SnackBar(content: Text('${product.name} removed from cart')),
+            );
+          },
+          color: Colors.red,
+        ),
       ),
     );
   }

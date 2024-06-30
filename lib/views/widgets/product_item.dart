@@ -9,12 +9,17 @@ class ProductItem extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return ListTile(
-      title: Text(product.name),
-      subtitle: Text('\$${product.price.toStringAsFixed(2)}'),
-      trailing: IconButton(
-        icon: Icon(Icons.add_shopping_cart),
-        onPressed: onAdd,
+    return Card(
+      margin: EdgeInsets.all(8.0),
+      child: ListTile(
+        leading: Icon(Icons.shopping_bag, color: Colors.teal),
+        title: Text(product.name),
+        subtitle: Text('\$${product.price.toStringAsFixed(2)}'),
+        trailing: IconButton(
+          icon: Icon(Icons.add_shopping_cart),
+          onPressed: onAdd,
+          color: Colors.teal,
+        ),
       ),
     );
   }

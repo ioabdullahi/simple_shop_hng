@@ -14,11 +14,14 @@ class MyApp extends StatelessWidget {
     return MaterialApp(
       title: 'Simple Shopping App',
       theme: ThemeData(
-        primarySwatch: Colors.blue,
+        primarySwatch: Colors.teal,
       ),
       home: ProductListScreen(),
       routes: {
-        '/checkout': (context) => CheckoutScreen(checkoutController: CheckoutController()),
+        '/checkout': (context) => CheckoutScreen(
+          checkoutController: CheckoutController(),
+          onProductScreenTap: () {},
+        ),
         '/order-successful': (context) => OrderSuccessfulScreen(),
       },
     );
