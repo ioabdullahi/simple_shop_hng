@@ -33,29 +33,36 @@ class _CheckoutScreenState extends State<CheckoutScreen> {
         title: Text('Checkout'),
         backgroundColor: Colors.teal,
       ),
-      body: ListView.builder(
-        itemCount: widget.checkoutController.checkoutItems.length,
-        itemBuilder: (context, index) {
-          final product = widget.checkoutController.checkoutItems[index];
-          return ListTile(
-            leading: Icon(Icons.shopping_bag, color: Colors.teal),
-            title: Text(product.name),
-            subtitle: Text('\$${product.price.toStringAsFixed(2)}'),
-            trailing: IconButton(
-              icon: Icon(Icons.remove_shopping_cart),
-              onPressed: () {
-                setState(() {
-                  widget.checkoutController.removeItem(product);
-                });
-                ScaffoldMessenger.of(context).showSnackBar(
-                  SnackBar(content: Text('${product.name} removed from cart')),
+      body: widget.checkoutController.checkoutItems.isEmpty
+          ? Center(
+              child: Text('Your cart is empty. Add products to checkout.'),
+            )
+          : ListView.builder(
+              itemCount: widget.checkoutController.checkoutItems.length,
+              itemBuilder: (context, index) {
+                final product = widget.checkoutController.checkoutItems[index];
+                return ListTile(
+                  leading: Icon(Icons.shopping_bag, color: Colors.teal),
+                  title: Text(product.name),
+                  subtitle: Text('\$${product.price.toStringAsFixed(2)}'),
+                  trailing: IconButton(
+                    icon: Icon(Icons.remove_shopping_cart),
+                    onPressed: () {
+                      setState(() {
+                        widget.checkoutController.removeItem(product);
+                      });
+                      ScaffoldMessenger.of(context).showSnackBar(
+                        SnackBar(
+                          content: Text('${product.name} removed from cart'),
+                          backgroundColor: Colors.redAccent,
+                        ),
+                      );
+                    },
+                    color: Colors.red,
+                  ),
                 );
               },
-              color: Colors.red,
             ),
-          );
-        },
-      ),
       bottomNavigationBar: BottomNavigationBar(
         items: [
           BottomNavigationBarItem(
@@ -73,11 +80,20 @@ class _CheckoutScreenState extends State<CheckoutScreen> {
       ),
       floatingActionButton: FloatingActionButton(
         onPressed: () {
-          widget.checkoutController.clearItems();
-          Navigator.push(
-            context,
-            MaterialPageRoute(builder: (context) => OrderSuccessfulScreen()),
-          );
+          if (widget.checkoutController.checkoutItems.isEmpty) {
+            ScaffoldMessenger.of(context).showSnackBar(
+              SnackBar(
+                content: Text('Cart is empty. Add products before checking out.'),
+                backgroundColor: Colors.redAccent,
+              ),
+            );
+          } else {
+            widget.checkoutController.clearItems();
+            Navigator.push(
+              context,
+              MaterialPageRoute(builder: (context) => OrderSuccessfulScreen()),
+            );
+          }
         },
         child: Icon(Icons.check),
         tooltip: 'Complete Order',

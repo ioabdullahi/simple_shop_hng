@@ -4,7 +4,6 @@ import 'package:simple_shop_hng/controllers/products_controller.dart';
 import 'package:simple_shop_hng/views/checkout_screen.dart';
 import 'package:simple_shop_hng/views/widgets/product_item.dart';
 
-
 class ProductListScreen extends StatefulWidget {
   @override
   _ProductListScreenState createState() => _ProductListScreenState();
@@ -56,7 +55,10 @@ class _ProductListScreenState extends State<ProductListScreen> {
               onPressed: () {
                 checkoutController.addItem(product);
                 ScaffoldMessenger.of(context).showSnackBar(
-                  SnackBar(content: Text('${product.name} added to cart')),
+                  SnackBar(
+                    content: Text('${product.name} added to cart'),
+                    backgroundColor: Colors.green,
+                  ),
                 );
               },
               color: Colors.teal,
