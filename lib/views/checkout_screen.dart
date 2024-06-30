@@ -87,7 +87,9 @@ class _CheckoutScreenState extends State<CheckoutScreen> {
               ),
             );
           } else {
-            widget.checkoutController.clearItems();
+            setState(() {
+              widget.checkoutController.clearItems();
+            });
             Navigator.push(
               context,
               MaterialPageRoute(builder: (context) => OrderSuccessfulScreen()),
